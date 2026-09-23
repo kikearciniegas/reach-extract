@@ -12,7 +12,7 @@ are read-only and emit JSON where the adapter supports it.
 | V2EX | `v2ex.com/t/ID` | `v2ex topic ID` | replies |
 | Reddit | `reddit.com`, `redd.it` | `reddit read POST_ID` | included comments |
 | Facebook | `facebook.com`, `fb.watch` | `facebook search URL` | generic page fallback |
-| Instagram | `instagram.com` | generic page read | media download |
+| Instagram | `instagram.com/p/…`, `/reel/…`, `/tv/…` | generic page read | media download |
 | YouTube | `youtube.com`, `youtu.be` | `youtube video URL` | transcript, comments |
 | Xiaoyuzhou | `xiaoyuzhoufm.com/episode` | `xiaoyuzhou episode URL` | transcript |
 | LinkedIn | `linkedin.com` | generic page read | adapter-specific profile posts later |
@@ -33,8 +33,15 @@ download command, so unavailable audio is reported as a gap.
 - Xiaohongshu note reads require the complete URL including `xsec_token` when
   the platform issued one. Keep at least 2–3 seconds between requests.
 - Reddit requires login. Anonymous JSON endpoints are not a fallback.
-- Instagram search is user search, not global post search. Direct post page
-  reading can be incomplete; downloaded media does not prove caption capture.
+- Instagram profile and profile-tab URLs are rejected because the extractor
+  cannot enumerate them. Supply a direct `/p/`, `/reel/`, or `/tv/` URL.
+  Direct post page reading can be incomplete; downloaded media does not prove
+  caption capture. Instagram does not advertise caption capability because the
+  generic page route returns post copy only as unstructured text.
+- One field run observed Instagram profile API throttling while direct-reel page
+  reads and downloads still succeeded; this is not a general guarantee. Treat
+  `doctor` as a dependency check, not a live probe of the account's Instagram
+  endpoint state.
 - Facebook has no stable adapter command for arbitrary post/reel detail in the
   current OpenCLI interface. Preserve the generic fallback result and surface
   missing fields explicitly.

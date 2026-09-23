@@ -42,6 +42,13 @@ function webRead(url) {
   return ["web", "read", "--url", url.href, "--stdout", "true", "--download-images", "false"];
 }
 
+function isInstagramProfileUrl(url) {
+  const segments = url.pathname.split("/").filter(Boolean);
+  return segments.length === 1 || (
+    segments.length === 2 && new Set(["reels", "tagged"]).has(segments[1].toLowerCase())
+  );
+}
+
 export const PLATFORMS = [
   {
     name: "xiaohongshu",
@@ -102,11 +109,16 @@ export const PLATFORMS = [
   {
     name: "instagram",
     hosts: ["instagram.com"],
-    capabilities: ["text", "caption", "image", "video"],
-    buildSteps: (url, o) => [
-      step("page", "post", webRead(url), true),
-      ...(o.media || o.audio ? [step("media", "media", ["instagram", "download", url.href, "--path", "{OUTPUT_DIR}/media"])] : []),
-    ],
+    capabilities: ["text", "image", "video"],
+    buildSteps: (url, o) => {
+      if (isInstagramProfileUrl(url)) {
+        throw new Error("Instagram profile enumeration is unsupported; provide a direct /p/, /reel/, or /tv/ URL");
+      }
+      return [
+        step("page", "post", webRead(url), true),
+        ...(o.media || o.audio ? [step("media", "media", ["instagram", "download", url.href, "--path", "{OUTPUT_DIR}/media"])] : []),
+      ];
+    },
   },
   {
     name: "youtube",

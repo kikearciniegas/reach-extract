@@ -57,3 +57,11 @@ test("splits procedural clauses merged by ASR punctuation", () => {
   assert.equal(result.commands[0].text.toLowerCase(), "then run npm test.");
   assert.equal(result.warnings.length, 1);
 });
+
+test("recognizes Spanish imperatives without a sequence cue", () => {
+  const result = extractInstructions([
+    { ok: true, evidence: "transcript", label: "asr", data: "Abre la aplicación. Configura tu cuenta. El cielo es azul." },
+  ], { platform: "instagram", url: "https://www.instagram.com/reel/ABC/" });
+  assert.deepEqual(result.steps.map((item) => item.text), ["Abre la aplicación.", "Configura tu cuenta."]);
+  assert.equal(result.stats.candidates, 2);
+});

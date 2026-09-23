@@ -72,9 +72,11 @@ The classifier:
 5. Deduplicates exact case-insensitive candidates.
 6. Emits the original fragment with evidence location and heuristic confidence.
 
-Cue patterns include English, Spanish, and Chinese phrases. The command pattern
-recognizes common tools including npm, Python, Node, Git, curl, Docker,
-OpenCLI, Agent Reach, ffmpeg, and Homebrew.
+Cue patterns include English, Spanish, and Chinese phrases. Bare imperative
+verbs are recognized in English and Spanish; Chinese detection currently
+depends on an explicit cue. The command pattern recognizes common tools
+including npm, Python, Node, Git, curl, Docker, OpenCLI, Agent Reach, ffmpeg,
+and Homebrew.
 
 ## Interpretation limits
 

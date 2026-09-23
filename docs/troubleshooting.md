@@ -121,6 +121,14 @@ to recover. HTTP 412 on Bilibili is commonly a risk-control response in the
 current environment, not a parser error. Do not retry in a tight loop or bypass
 the control.
 
+For Instagram, inspect `manifest.json.steps[].error` and `raw/*.stderr` for a
+specific error such as `HTTP 429`. Do not scan successful stdout for the bare
+digits `429`: Instagram CDN URLs can contain that sequence and produce a false
+alarm. A healthy `doctor` result does not prove that the current Instagram
+session or every Instagram API endpoint is usable. See the
+[Instagram field report](instagram.md) for the observed endpoint behavior and
+safe recovery procedure.
+
 ## Requested evidence absent from normalization
 
 If raw JSON clearly contains the field but `record.json` does not:

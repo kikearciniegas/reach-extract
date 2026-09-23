@@ -51,6 +51,21 @@ test("uses the web adapter's named URL option", () => {
   assert.deepEqual(instagram.steps[0].args.slice(0, 4), ["web", "read", "--url", "https://www.instagram.com/reel/ABC/"]);
 });
 
+test("rejects Instagram profile URLs instead of treating them as posts", () => {
+  for (const url of [
+    "https://www.instagram.com/example/",
+    "https://www.instagram.com/example/reels/",
+    "https://www.instagram.com/example/tagged/",
+  ]) {
+    assert.throws(() => buildPlan(url, { fallback: false }), /profile enumeration is unsupported/i);
+  }
+});
+
+test("does not advertise unavailable Instagram caption evidence", () => {
+  const instagram = buildPlan("https://www.instagram.com/reel/ABC/", { fallback: false });
+  assert.ok(!instagram.capabilities.includes("caption"));
+});
+
 test("audio mode adds platform media download steps", () => {
   for (const url of [
     "https://www.xiaohongshu.com/explore/abc?xsec_token=t",

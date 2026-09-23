@@ -21,7 +21,9 @@ Exit code `0` alone is not evidence of content.
   to enable the OpenCLI extension in an already logged-in Chrome session.
 - Login required/expired: ask the user to log in manually. Do not automate it.
 - Rate limit/challenge: stop that platform, retain raw error output, and report
-  the condition. Do not loop around anti-abuse controls.
+  the condition. Detect HTTP rate limits from the manifest error or raw stderr
+  (for example, `HTTP 429`), not from digits in successful stdout or embedded
+  media URLs. Do not loop around anti-abuse controls.
 - Unsupported direct-detail route: retain the lower-confidence generic page
   result and report missing evidence fields.
 - Partial batch: keep successful bundles; do not erase them because another URL

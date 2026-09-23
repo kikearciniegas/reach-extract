@@ -14,6 +14,7 @@ LLM agent loads only when needed.
 | [Audio and instruction extraction](audio-and-instructions.md) | ASR consent, provider behavior, supported sources, and classifier behavior |
 | [Security and privacy](security-and-privacy.md) | Read-only guarantees, credentials, personal data, external transmission, and platform controls |
 | [Troubleshooting](troubleshooting.md) | Diagnostics and common failure modes |
+| [Instagram](instagram.md) | Rate limits, profile enumeration gaps, and a tested batch procedure |
 
 ## Maintainers
 
