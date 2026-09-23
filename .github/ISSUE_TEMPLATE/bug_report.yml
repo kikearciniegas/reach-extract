@@ -1,0 +1,37 @@
+name: Bug report
+description: Report a reproducible problem without sharing sensitive content.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: Before submitting, remove credentials, cookies, private URLs, personal data, and raw extraction output.
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Observed behavior
+      description: Explain what happened using sanitized examples.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: input
+    id: commit
+    attributes:
+      label: Commit or version
+      placeholder: 6070d71 or 0.3.0
+    validations:
+      required: true
+  - type: dropdown
+    id: sensitive
+    attributes:
+      label: Sanitization confirmation
+      options:
+        - I confirm this report contains no secrets or sensitive personal data.
+    validations:
+      required: true

@@ -1,0 +1,26 @@
+.DS_Store
+node_modules/
+dist/
+coverage/
+.env
+.env.*
+!.env.example
+.envrc
+.secrets*
+*.key
+*.pem
+*.p12
+*.pfx
+credentials*.json
+secrets*.json
+auth-state*.json
+storage-state*.json
+output/
+skills/social-media-extract/output/
+*.log
+
+# Generated artifacts from the preserved Facebook prototype
+agent-reach-*.json
+agent-reach-*.jsonl
+reel*.jpg
+facebook-video-suggested-actions.md

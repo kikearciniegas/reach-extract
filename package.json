@@ -1,0 +1,23 @@
+{
+  "name": "reach-extract",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "description": "OpenCLI-first social media content extraction and normalization skill",
+  "author": "Rafael Arciniegas",
+  "license": "MIT",
+  "scripts": {
+    "doctor": "node skills/social-media-extract/scripts/reach-extract.mjs doctor",
+    "platforms": "node skills/social-media-extract/scripts/reach-extract.mjs platforms",
+    "plan": "node skills/social-media-extract/scripts/reach-extract.mjs plan",
+    "extract": "node skills/social-media-extract/scripts/reach-extract.mjs extract",
+    "install:agents": "node scripts/install-agent-skill.mjs install",
+    "check:agents": "node scripts/install-agent-skill.mjs check",
+    "docs:check": "node --test test/documentation.test.mjs",
+    "test": "node --test test/*.test.mjs",
+    "validate:skill": "node scripts/validate-skill.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

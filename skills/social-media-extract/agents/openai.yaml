@@ -1,0 +1,7 @@
+interface:
+  display_name: "Social Media Extract"
+  short_description: "Extract social content and spoken instructions"
+  default_prompt: "Use $social-media-extract to extract this social post, transcribe its audio when needed, and return evidence-linked instructions."
+
+policy:
+  allow_implicit_invocation: true
