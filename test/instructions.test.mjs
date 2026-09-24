@@ -65,3 +65,56 @@ test("recognizes Spanish imperatives without a sequence cue", () => {
   assert.deepEqual(result.steps.map((item) => item.text), ["Abre la aplicación.", "Configura tu cuenta."]);
   assert.equal(result.stats.candidates, 2);
 });
+
+const asr = (data) => [{ ok: true, evidence: "transcript", label: "asr", data }];
+const reel = { platform: "instagram", url: "https://www.instagram.com/reel/ABC/" };
+const UNSUPPORTED = "instructions: unsupported-language";
+
+test("recognizes Spanish tú-form instructions spoken in a reel", () => {
+  const result = extractInstructions(asr(
+    "eliges uno de los modelos que te gusten, le das a copiar el prompt, te vas a la otra aplicación y le pegas todo el texto. Ahí ya te sale el resultado. Si lo quieres, comenta la palabra GUIA abajo.",
+  ), reel);
+  assert.ok(result.stats.candidates >= 1, `expected candidates, got ${result.stats.candidates}`);
+  assert.equal(result.language, "es");
+  assert.deepEqual(result.gaps, []);
+});
+
+test("matches Spanish instructions without accents and in any case", () => {
+  const result = extractInstructions(asr("ELIGES UNO Y LE DAS A COPIAR. Despues suscribete al canal. Ve a la configuracion, dale a guardar."), reel);
+  assert.equal(result.stats.candidates, 3);
+});
+
+test("still extracts the same instructions in English", () => {
+  const result = extractInstructions(asr(
+    "Pick one of the models you like, hit copy prompt, go to the other app and paste all the text. The result shows up right there. If you want it, comment the word GUIDE below.",
+  ), reel);
+  assert.ok(result.stats.candidates >= 1, `expected candidates, got ${result.stats.candidates}`);
+  assert.equal(result.language, "en");
+  assert.deepEqual(result.gaps, []);
+});
+
+test("Spanish narrative yields zero candidates and no language gap", () => {
+  const result = extractInstructions(asr(
+    "Ayer fuimos a la playa con mis primos. El agua estaba muy fría y el cielo tenía un color precioso. Mi abuela nos contó historias de cuando era joven, y todos nos reímos mucho.",
+  ), reel);
+  assert.equal(result.language, "es");
+  assert.equal(result.stats.candidates, 0);
+  assert.deepEqual(result.gaps, []);
+});
+
+test("reports an unsupported-language gap instead of a clean zero", () => {
+  for (const text of [
+    "Primeiro você escolhe um modelo, depois copia o prompt e cola na outra aplicação. Comente a palavra GUIA para receber o link.",
+    "Choisis un modèle, puis copie le prompt et colle-le dans l'autre application. Commente le mot GUIDE pour recevoir le lien.",
+  ]) {
+    const result = extractInstructions(asr(text), reel);
+    assert.ok(result.language && !["es", "en"].includes(result.language), `language: ${result.language}`);
+    assert.deepEqual(result.gaps, [UNSUPPORTED]);
+  }
+});
+
+test("empty transcripts record no language gap", () => {
+  const result = extractInstructions([], reel);
+  assert.equal(result.basis, "none");
+  assert.deepEqual(result.gaps, []);
+});

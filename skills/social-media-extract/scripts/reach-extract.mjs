@@ -139,6 +139,7 @@ async function main() {
   const instructions = options.instructions
     ? extractInstructions(outputs, { platform: plan.platform, url: plan.url })
     : null;
+  if (instructions) record.gaps.push(...instructions.gaps);
   const manifest = {
     schema_version: "0.1.0",
     run_id: id,

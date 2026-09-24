@@ -11,7 +11,9 @@ An extraction is usable when all of the following hold:
    `record.json.gaps`.
 5. When instructions are requested, `instructions.json` contains only items
    linked to transcript evidence; an empty result is valid and must not be
-   filled with inferred advice.
+   filled with inferred advice. An empty result counts as "no instructions"
+   only when `instructions.json.gaps` is empty; with
+   `instructions: unsupported-language` it means the language was not checked.
 
 Exit code `0` alone is not evidence of content.
 

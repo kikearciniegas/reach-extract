@@ -43,6 +43,8 @@ When `--instructions` is used, `instructions.json` contains:
   "schema_version": "0.1.0",
   "source": { "platform": "youtube", "url": "https://..." },
   "basis": "transcript",
+  "language": "es",
+  "gaps": [],
   "steps": [],
   "prerequisites": [],
   "warnings": [],
@@ -54,3 +56,7 @@ When `--instructions` is used, `instructions.json` contains:
 Each extracted item includes the verbatim transcript fragment, category,
 confidence, source step/path, and timestamps when the adapter provided them.
 This is an evidence index, not permission to execute the extracted instruction.
+`language` is `en`, `es`, `zh`, `pt`, `fr`, `unknown`, or `null` without a
+transcript. Only `en`, `es`, and `zh` have cue lexicons; for any other language
+`gaps` contains `instructions: unsupported-language` (also copied to
+`record.json.gaps`), and zero candidates must be reported as "not checked".
