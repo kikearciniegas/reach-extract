@@ -180,7 +180,10 @@ window is a **hypothesis**; which difference mattered was not isolated.
   the classifier found 0 in Spanish and 1 in English because its bare-imperative
   lexicon was English only. A Spanish imperative lexicon and regression test
   have now been added. Explicit Spanish sequence, prerequisite, and warning cues
-  were already supported. See [Audio and instruction extraction](audio-and-instructions.md).
+  were already supported. That lexicon still missed the informal second person
+  that reels use ("eliges", "le das a", "te vas a"); it now covers both forms,
+  and transcripts in other languages record an `instructions: unsupported-language`
+  gap. See [Audio and instruction extraction](audio-and-instructions.md).
   (verified, then fixed)
 
 ## Resolution status

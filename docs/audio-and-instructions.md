@@ -73,8 +73,19 @@ The classifier:
 6. Emits the original fragment with evidence location and heuristic confidence.
 
 Cue patterns include English, Spanish, and Chinese phrases. Bare imperative
-verbs are recognized in English and Spanish; Chinese detection currently
-depends on an explicit cue. The command pattern recognizes common tools
+verbs are recognized in English at the start of a sentence. Spanish verbs are
+recognized at the start of any clause (sentence start, after `,`, `;`, `:` or
+` y `, optionally after a clitic such as `le` or `te`), with or without accents,
+in two forms: imperatives (`abre`, `comenta`, `ve a`, `dale`) and the informal
+second person that spoken tutorials use (`abres`, `eliges`, `le das a`,
+`te vas a`). Chinese detection currently depends on an explicit cue.
+
+`language` records the transcript language as `en`, `es`, `zh`, `pt`, `fr`, or
+`unknown`. It comes from a stopword vote (Han characters for `zh`) and is
+unreliable on very short text. The classifier has cues only for `en`, `es`, and
+`zh`. For any other value, including `unknown`, a non-empty transcript records
+the gap `instructions: unsupported-language`: zero candidates then means "not
+checked", not "no instructions". The command pattern recognizes common tools
 including npm, Python, Node, Git, curl, Docker, OpenCLI, Agent Reach, ffmpeg,
 and Homebrew.
 
@@ -83,8 +94,8 @@ and Homebrew.
 - The output is extractive: it preserves candidate wording instead of rewriting
   or completing missing steps.
 - Confidence is a cue-based score, not a calibrated probability.
-- Implicit, highly contextual, or unsupported-language instructions can be
-  missed.
+- Implicit or highly contextual instructions can be missed. Unsupported
+  languages are reported as a gap rather than missed silently.
 - Quoted or criticized commands can still be classified as commands.
 - One sentence receives only one category according to precedence.
 - `instructions.json` is not authorization to run any command, install anything,

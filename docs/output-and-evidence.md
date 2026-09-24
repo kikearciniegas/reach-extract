@@ -94,6 +94,10 @@ index; both remain available in raw output.
 Written only with `--instructions`. It contains:
 
 - `basis`: `transcript` or `none`;
+- `language`: detected transcript language (`en`, `es`, `zh`, `pt`, `fr`, or
+  `unknown`), or `null` when there is no transcript;
+- `gaps`: `["instructions: unsupported-language"]` when a transcript exists in a
+  language without a cue lexicon, otherwise `[]`;
 - `steps`, `prerequisites`, `warnings`, and `commands` arrays;
 - original candidate text;
 - category and heuristic confidence;
@@ -112,7 +116,9 @@ ordinary steps.
 - `post` is always requested;
 - `comments` follows `--comments`;
 - `media` follows `--media`;
-- `transcript` follows `--transcript`, `--audio`, or `--instructions`.
+- `transcript` follows `--transcript`, `--audio`, or `--instructions`;
+- `instructions: unsupported-language` is copied from `instructions.json` when
+  the transcript language has no cue lexicon.
 
 A gap means “not captured by this run.” It must not be converted into a claim
 about the source. For example, a transcript gap does not mean the video is
