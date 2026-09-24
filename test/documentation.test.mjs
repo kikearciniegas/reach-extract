@@ -86,7 +86,9 @@ test("authorship and copyright notices remain attached to distributable files", 
   assert.equal(packageMetadata.license, "MIT");
 
   const skill = readFileSync(path.join(root, "skills", "social-media-extract", "SKILL.md"), "utf8");
-  assert.match(skill, /author: Rafael Arciniegas/);
+  assert.match(skill, /Authored by Rafael Arciniegas/);
+  const frontmatter = skill.slice(4, skill.indexOf("\n---\n", 4));
+  assert.doesNotMatch(frontmatter, /^metadata:/m);
   assert.ok(skill.includes(notice));
   assert.ok(readFileSync(path.join(root, "NOTICE.md"), "utf8").includes(notice));
   assert.ok(readFileSync(path.join(root, "skills", "social-media-extract", "NOTICE.md"), "utf8").includes(notice));

@@ -1,6 +1,6 @@
 interface:
-  display_name: "Social Media Extract"
-  short_description: "Extract social content and spoken instructions"
+  display_name: "Reach Extract"
+  short_description: "Extract social evidence"
   default_prompt: "Use $social-media-extract to extract this social post, transcribe its audio when needed, and return evidence-linked instructions."
 
 policy:

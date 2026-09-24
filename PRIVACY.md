@@ -10,6 +10,11 @@ The project does not itself collect or receive those bundles. GitHub receives
 the normal account and usage data associated with visiting or contributing to
 this repository under GitHub's own policies.
 
+When a release package is uploaded to Claude, ChatGPT, Gemini, or another
+hosted agent, prompts, uploaded evidence, and tool results are processed by
+that provider under the user's account settings and the provider's terms and
+privacy policy. This project does not control or receive that hosted data.
+
 ## Data processed by an extraction
 
 Depending on the requested source and options, output can contain names,

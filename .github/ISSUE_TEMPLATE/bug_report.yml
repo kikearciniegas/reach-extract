@@ -24,7 +24,21 @@ body:
     id: commit
     attributes:
       label: Commit or version
-      placeholder: 6070d71 or 0.3.0
+      placeholder: 6070d71 or 0.4.0
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Agent surface
+      options:
+        - Codex app or CLI
+        - Claude Code
+        - Claude Cowork or Desktop
+        - ChatGPT
+        - Gemini CLI
+        - Gemini Apps or Desktop
+        - Other compatible agent
     validations:
       required: true
   - type: dropdown

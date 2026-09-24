@@ -23,6 +23,24 @@ second native link for every compatible agent can make the same skill appear
 twice, so the installer creates only the shared path plus the Codex and Claude
 paths that those clients require.
 
+## Packaged desktop surfaces
+
+The filesystem installer above is separate from the release packages:
+
+- Claude Code and Cowork can install the native `reach-extract` plugin; its
+  skill is namespaced as `/reach-extract:social-media-extract`.
+- Claude's Skills interface can upload the standalone skill ZIP.
+- ChatGPT/Codex can consume the portable Agent Plugin after installation or
+  directory publication.
+- Gemini Apps can use the reduced Gem instructions, while Gemini CLI continues
+  to use the canonical filesystem skill.
+
+Hosted surfaces may not expose the local terminal, Agent Reach, OpenCLI,
+browser authentication, filesystem, or ASR configuration. Use the
+reduced-capability workflow in `SKILL.md` whenever those dependencies are not
+actually available; never claim a local operation ran based only on the
+presence of the skill instructions.
+
 ## Installer
 
 From the repository root:

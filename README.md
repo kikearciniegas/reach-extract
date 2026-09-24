@@ -9,6 +9,11 @@ The canonical skill is [`skills/social-media-extract`](skills/social-media-extra
 It follows the open Agent Skills format and is installed through links rather
 than duplicated copies.
 
+Portable desktop packages for Claude, ChatGPT/Codex, and Gemini are published
+on the [latest GitHub release](https://github.com/kikearciniegas/reach-extract/releases/latest).
+See [Desktop application support](docs/desktop-apps.md) for installation and
+the capability differences between local and hosted environments.
+
 ## What it does
 
 - Detects supported platforms from a supplied URL.
@@ -106,6 +111,31 @@ Links are the default, so canonical changes propagate immediately. `--copy` is
 available for filesystems that cannot create links, but copies do not update
 automatically. See [Agent compatibility](skills/social-media-extract/references/compatibility.md).
 
+## Desktop plugins and Gems
+
+Build all release artifacts locally with:
+
+```bash
+npm run package:desktop
+```
+
+| Application | Artifact or install source | Runtime note |
+| --- | --- | --- |
+| Claude Code / Cowork | `reach-extract-claude-plugin.zip` or this repository as a marketplace | Full extraction requires the local dependencies and session to be available |
+| Claude Skills | `reach-extract-claude-desktop.zip` | Hosted sessions use pasted/uploaded evidence when local tools are unavailable |
+| ChatGPT / Codex | `reach-extract-chatgpt-plugin.zip` | Public ChatGPT use requires OpenAI review and publication |
+| Gemini Apps/Desktop | `reach-extract-gemini-instructions.md` | Reduced-capability Gem; no assumed local Agent Reach/OpenCLI access |
+
+The native Claude skill command is
+`/reach-extract:social-media-extract`. For Gemini Apps, create a Gem named
+`Reach Extract` and paste the released instructions. No public Gemini share URL
+exists until the maintainer creates and shares that Gem from a Google account.
+
+Hosted applications cannot be assumed to reuse the operator's local browser
+login, OpenCLI bridge, filesystem, or ASR configuration. Every package is
+required to disclose that limitation and work only from evidence it actually
+retrieved or the user supplied.
+
 ## Documentation
 
 - [Documentation index](docs/index.md)
@@ -118,6 +148,10 @@ automatically. See [Agent compatibility](skills/social-media-extract/references/
 - [Security and privacy](docs/security-and-privacy.md)
 - [Troubleshooting](docs/troubleshooting.md)
 - [Development and maintenance](docs/development.md)
+- [Desktop application support](docs/desktop-apps.md)
+- [Distribution formats and verification](docs/distribution-format.md)
+- [Claude Code and Cowork plugin](docs/claude-plugin.md)
+- [ChatGPT plugin submission](docs/chatgpt-plugin-submission.md)
 - [Legacy Facebook prototypes](docs/legacy-facebook-prototypes.md)
 - [Platform routing reference](skills/social-media-extract/references/platforms.md)
 - [Operational acceptance criteria](skills/social-media-extract/references/operations.md)
@@ -128,6 +162,9 @@ automatically. See [Agent compatibility](skills/social-media-extract/references/
 npm test
 npm run docs:check
 npm run validate:skill
+npm run validate:plugin
+npm run validate:claude
+npm run package:desktop
 ```
 
 The test suite is offline. Live platform extraction is intentionally separate

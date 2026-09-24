@@ -6,6 +6,9 @@
 npm test
 npm run docs:check
 npm run validate:skill
+npm run validate:plugin
+npm run validate:claude
+npm run package:desktop
 npm run install:agents -- --scope project --dry-run
 ```
 
@@ -23,6 +26,7 @@ not part of the offline test suite.
 | `normalize.test.mjs` | JSON/text parsing, field collection, deduplication, gaps, and transcript metadata |
 | `platforms.test.mjs` | URL detection, read-only plans, stable IDs, generic web syntax, and media steps |
 | `documentation.test.mjs` | Local Markdown links and CLI option documentation |
+| `distributions.test.mjs` | Desktop archive layouts, Gemini safeguards, and SHA-256 manifests |
 
 Tests should assert observable behavior or safety invariants, not generated
 wording.
@@ -116,14 +120,17 @@ clients safely ignore it and the validator accepts it.
 
 1. Update behavior and focused tests.
 2. Update affected documentation and schema version if required.
-3. Update the package and skill metadata versions together for a meaningful
-   release.
-4. Run `npm test` and `npm run validate:skill`.
-5. Run project/user `check:agents` and confirm links resolve to the canonical
+3. Update `package.json`, `plugin.json`, `.codex-plugin/plugin.json`, both
+   `.claude-plugin` manifests, and marketplace entry to the same version.
+4. Run `npm test`, documentation checks, and every manifest validator.
+5. Build the desktop artifacts and inspect their layouts and checksums.
+6. Run project/user `check:agents` and confirm links resolve to the canonical
    folder.
-6. Smoke-test `platforms` and one offline `plan` through an installed link.
-7. Perform live tests only with explicit authorization and record platform
+7. Smoke-test `platforms` and one offline `plan` through an installed link.
+8. Perform live tests only with explicit authorization and record platform
    limitations rather than hiding them.
+9. Push the release commit, wait for CI and CodeQL, tag `vX.Y.Z`, and verify the
+   published release assets against `manifest.json`.
 
 ## Non-goals for maintenance
 

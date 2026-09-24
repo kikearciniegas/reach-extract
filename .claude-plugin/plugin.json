@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "reach-extract",
+  "displayName": "Reach Extract",
+  "version": "0.4.0",
+  "description": "Read-only social-media extraction with normalized evidence, provenance, optional transcription, and instruction recovery.",
+  "author": {
+    "name": "Rafael Arciniegas",
+    "url": "https://github.com/kikearciniegas"
+  },
+  "homepage": "https://github.com/kikearciniegas/reach-extract",
+  "repository": "https://github.com/kikearciniegas/reach-extract",
+  "license": "MIT",
+  "keywords": ["social-media", "research", "evidence", "transcription"],
+  "skills": "./skills/"
+}

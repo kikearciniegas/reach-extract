@@ -34,11 +34,13 @@ licenses.
 | [bilibili-cli](https://github.com/jackwener/bilibili-cli) | 0.6.2 | jackwener and contributors | Apache-2.0 |
 | [uv](https://github.com/astral-sh/uv) | 0.12.17 | Astral Software Inc. and contributors | MIT OR Apache-2.0 |
 | [PyYAML](https://github.com/yaml/pyyaml) | 6.0.3 | Kirill Simonov, current maintainers, and contributors | MIT |
+| [Claude Code](https://github.com/anthropics/claude-code) | 2.1.281 | Anthropic PBC | Anthropic commercial terms; used only as a CI/plugin validator |
 
 Node.js runs the project. Agent Reach and OpenCLI provide external routing and
 site access. bilibili-cli is a Bilibili fallback. uv and PyYAML are used only by
-the skill-validation development command. None of those projects endorses or
-sponsors WORX Reach Extract.
+the skill-validation development command. Claude Code is installed only in CI
+and maintainer environments to validate the Anthropic plugin manifest. None of
+those projects endorses or sponsors WORX Reach Extract.
 
 ## Declared direct dependencies of the external tools
 

@@ -1,6 +1,6 @@
 {
   "name": "reach-extract",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "type": "module",
   "description": "OpenCLI-first social media content extraction and normalization skill",
@@ -13,9 +13,13 @@
     "extract": "node skills/social-media-extract/scripts/reach-extract.mjs extract",
     "install:agents": "node scripts/install-agent-skill.mjs install",
     "check:agents": "node scripts/install-agent-skill.mjs check",
+    "package:desktop": "node scripts/build-distributions.mjs",
     "docs:check": "node --test test/documentation.test.mjs",
     "test": "node --test test/*.test.mjs",
-    "validate:skill": "node scripts/validate-skill.mjs"
+    "validate:skill": "node scripts/validate-skill.mjs",
+    "validate:plugin": "node scripts/validate-plugin.mjs",
+    "validate:claude": "node scripts/validate-claude-plugin.mjs",
+    "validate:claude:official": "claude plugin validate . --strict"
   },
   "engines": {
     "node": ">=20"

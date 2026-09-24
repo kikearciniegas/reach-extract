@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">Reach Extract</title>
+  <desc id="desc">Connected evidence nodes inside a rounded square</desc>
+  <rect width="256" height="256" rx="52" fill="#0E7490"/>
+  <path d="M70 82 128 54l58 28v66l-58 54-58-54Z" fill="none" stroke="#ECFEFF" stroke-width="14" stroke-linejoin="round"/>
+  <path d="m70 82 58 44 58-44M128 126v76" fill="none" stroke="#67E8F9" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="70" cy="82" r="14" fill="#ECFEFF"/><circle cx="128" cy="54" r="14" fill="#ECFEFF"/><circle cx="186" cy="82" r="14" fill="#ECFEFF"/><circle cx="128" cy="126" r="15" fill="#ECFEFF"/><circle cx="128" cy="202" r="14" fill="#ECFEFF"/>
+</svg>
