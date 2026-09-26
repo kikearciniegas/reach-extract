@@ -1,6 +1,6 @@
 # Reach Extract
 
-WORX Reach Extract is a read-only social-content extraction stack and portable
+Reach Extract is a read-only social-content extraction stack and portable
 Agent Skill. It routes supported URLs through Agent Reach and OpenCLI, preserves
 raw command output, normalizes evidence, optionally transcribes audio, and can
 identify evidence-linked instructions without executing them.
