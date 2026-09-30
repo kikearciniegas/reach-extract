@@ -1,6 +1,6 @@
 {
   "name": "reach-extract",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Read-only social-media extraction with normalized evidence, provenance, optional transcription, and instruction recovery.",
   "author": {
     "name": "Rafael Arciniegas",

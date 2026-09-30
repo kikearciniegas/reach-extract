@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "reach-extract",
   "displayName": "Reach Extract",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Read-only social-media extraction with normalized evidence, provenance, optional transcription, and instruction recovery.",
   "author": {
     "name": "Rafael Arciniegas",
