@@ -16,6 +16,7 @@ LLM agent loads only when needed.
 | [Troubleshooting](troubleshooting.md) | Diagnostics and common failure modes |
 | [Instagram](instagram.md) | Rate limits, profile enumeration gaps, and a tested batch procedure |
 | [Desktop applications](desktop-apps.md) | Claude, ChatGPT/Codex, and Gemini installation and capability boundaries |
+| [Gemini Gem](gemini-gem.md) | Hosted Gem, creation, sharing, smoke tests, and update procedure |
 | [Distribution formats](distribution-format.md) | Release artifacts, layouts, builds, and checksum verification |
 
 ## Maintainers

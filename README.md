@@ -113,6 +113,8 @@ automatically. See [Agent compatibility](skills/social-media-extract/references/
 
 ## Desktop plugins and Gems
 
+Use the hosted version directly: [Open Reach Extract as a shared Gemini Gem](https://gemini.google.com/gem/1PgdjNx3fS0DS7H1hs69Pl4tUZo_w_EgC?usp=sharing).
+
 Build all release artifacts locally with:
 
 ```bash
@@ -127,9 +129,11 @@ npm run package:desktop
 | Gemini Apps/Desktop | `reach-extract-gemini-instructions.md` | Reduced-capability Gem; no assumed local Agent Reach/OpenCLI access |
 
 The native Claude skill command is
-`/reach-extract:social-media-extract`. For Gemini Apps, create a Gem named
-`Reach Extract` and paste the released instructions. No public Gemini share URL
-exists until the maintainer creates and shares that Gem from a Google account.
+`/reach-extract:social-media-extract`. Claude Code users can add this repository
+as a marketplace and install `reach-extract@reach-extract`; see the
+[Claude plugin guide](docs/claude-plugin.md). For Gemini Apps, use the shared
+Gem above or create a Gem named `Reach Extract` and paste the released
+instructions.
 
 Hosted applications cannot be assumed to reuse the operator's local browser
 login, OpenCLI bridge, filesystem, or ASR configuration. Every package is
@@ -149,6 +153,7 @@ retrieved or the user supplied.
 - [Troubleshooting](docs/troubleshooting.md)
 - [Development and maintenance](docs/development.md)
 - [Desktop application support](docs/desktop-apps.md)
+- [Gemini Gem publication](docs/gemini-gem.md)
 - [Distribution formats and verification](docs/distribution-format.md)
 - [Claude Code and Cowork plugin](docs/claude-plugin.md)
 - [ChatGPT plugin submission](docs/chatgpt-plugin-submission.md)

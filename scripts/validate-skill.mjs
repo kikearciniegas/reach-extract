@@ -21,6 +21,8 @@ assert.match(frontmatter, /^name:\s*social-media-extract\s*$/m, "invalid skill n
 assert.match(frontmatter, /^description:\s*\S.{40,}$/m, "description must explain the skill and when to use it");
 assert.match(frontmatter, /^license:\s*MIT\b/m, "skill must declare the MIT license");
 assert.doesNotMatch(frontmatter, /^metadata:/m, "OpenAI interface settings belong in agents/openai.yaml");
+const description = frontmatter.match(/^description:\s*(.+)$/m)?.[1]?.trim();
+assert.ok(description && description.length <= 200, "description must be at most 200 characters for Claude Desktop");
 
 assert.ok(existsSync(openAiPath), "agents/openai.yaml is missing");
 const openAi = readFileSync(openAiPath, "utf8");

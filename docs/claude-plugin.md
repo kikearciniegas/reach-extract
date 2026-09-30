@@ -32,6 +32,24 @@ npm run validate:claude:official
 The official command requires Claude Code on `PATH`. CI installs a pinned
 Claude Code version and runs both checks before release packaging.
 
+## Verification coverage
+
+Repository automation and the release process cover these checks:
+
+- Validate the Anthropic plugin and marketplace manifests with repository
+  assertions and Claude Code's official strict validator.
+- Build the plugin ZIP and verify its required root layout and SHA-256 hash.
+- Run unit, documentation, portability, and packaging checks in CI.
+- Run CodeQL independently on repository changes.
+
+The public v0.4.0 release received additional verification on September 29,
+2026. Its published artifacts matched every digest in `manifest.json`; the
+unpacked Claude plugin passed both official strict manifest validations; and
+the public GitHub marketplace installed in an isolated Claude configuration.
+Claude reported version `0.4.0`, one enabled `social-media-extract` skill, and
+no agents, hooks, MCP servers, or LSP servers. A live model invocation was not
+claimed because the local Claude Code session was not authenticated.
+
 ## Runtime boundary and smoke test
 
 Claude Code can run the bundled Node.js helper when Node.js, Agent Reach,
@@ -49,6 +67,8 @@ Before directory submission:
    reports the access/runtime gap.
 5. Test pasted content and confirm it is normalized without invented fields.
 6. Confirm the plugin performs no engagement or login action.
+7. Record the model, client version, and result; do not treat manifest or
+   installation success as proof that a live invocation passed.
 
 ## Submit to Anthropic
 

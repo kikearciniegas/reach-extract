@@ -54,11 +54,16 @@ Official packaging documentation: <https://developers.openai.com/plugins/build/p
 
 Artifact: `reach-extract-gemini-instructions.md`
 
+Hosted version: [Open Reach Extract as a shared Gemini Gem](https://gemini.google.com/gem/1PgdjNx3fS0DS7H1hs69Pl4tUZo_w_EgC?usp=sharing)
+
 Create a Gem in the Gemini web app, name it `Reach Extract`, paste the artifact
 into the Gem instructions, and save it. Gemini Apps cannot be assumed to expose
 the local extractor or authenticated browser session; the adapter explicitly
 limits itself to content actually retrieved in the session or supplied by the
 user.
+
+See [Gemini Gem publication](gemini-gem.md) for sharing, tested behavior,
+privacy boundaries, and the maintainer update procedure.
 
 Official instructions: <https://support.google.com/gemini/answer/15146780>
 

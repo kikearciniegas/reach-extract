@@ -1,6 +1,6 @@
 ---
 name: social-media-extract
-description: Extract and normalize evidence and actionable instructions from specific social posts, reels, videos, images, captions, audio, comments, and profile content through Agent Reach and OpenCLI. Use when a user supplies social URLs or asks for reproducible, read-only social-content or spoken-instruction extraction; do not use for publishing, engagement actions, or account automation.
+description: Extract and normalize evidence and instructions from social URLs, posts, videos, captions, audio, comments, profiles. Use for reproducible read-only extraction, not publishing or account automation.
 license: MIT. See LICENSE for the full license text.
 ---
 

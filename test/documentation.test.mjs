@@ -33,8 +33,10 @@ test("all local documentation links resolve", () => {
   const files = [
     path.join(root, "README.md"),
     path.join(root, "NOTICE.md"),
+    path.join(root, "PRIVACY.md"),
     path.join(root, "THIRD_PARTY_NOTICES.md"),
     ...markdownFiles(path.join(root, "docs")),
+    ...markdownFiles(path.join(root, "adapters")),
     ...markdownFiles(path.join(root, "skills", "social-media-extract")),
   ];
   const failures = [];
@@ -50,6 +52,13 @@ test("all local documentation links resolve", () => {
     }
   }
   assert.deepEqual(failures, []);
+});
+
+test("the shared Gemini Gem URL remains documented", () => {
+  const url = "https://gemini.google.com/gem/1PgdjNx3fS0DS7H1hs69Pl4tUZo_w_EgC?usp=sharing";
+  for (const relative of ["README.md", "docs/desktop-apps.md", "docs/gemini-gem.md"]) {
+    assert.ok(readFileSync(path.join(root, relative), "utf8").includes(url), `${relative} is missing the shared Gem URL`);
+  }
 });
 
 test("built-in extraction help documents every public option", () => {
