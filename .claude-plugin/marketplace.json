@@ -6,14 +6,14 @@
     "url": "https://github.com/kikearciniegas"
   },
   "description": "Read-only social evidence extraction tools for Claude Code and Cowork.",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "plugins": [
     {
       "name": "reach-extract",
       "source": "./",
       "displayName": "Reach Extract",
       "description": "Read-only social-media extraction with normalized evidence, provenance, optional transcription, and instruction recovery.",
-      "version": "0.4.0",
+      "version": "0.4.1",
       "author": {
         "name": "Rafael Arciniegas",
         "url": "https://github.com/kikearciniegas"
