@@ -1,0 +1,34 @@
+# gitleaks' default secret rules plus personal-data (PII) rules: email, phone.
+# Policy: ci-flow skills/ci-flow/POLICY.md §1 "Plan limits and secrets".
+# Read by CI's range scan (.github/workflows/ci.yml, job Test). Same rules as the
+# owner's ci-flow and repo-create repos and the local pre-commit hook's copy.
+# Tests build their PII-shaped values at run time, so no path is allowlisted.
+title = "gitleaks default rules + PII (email, phone)"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "pii-email"
+description = "Email address (allowed: GitHub noreply, example.com/.org/.net/.invalid)"
+regex = '''[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}'''
+keywords = ["@"]
+[[rules.allowlists]]
+regexTarget = "match"
+regexes = [
+  '''(?i)@users\.noreply\.github\.com$''',
+  '''(?i)^noreply@github\.com$''',
+  '''(?i)@(?:[a-z0-9-]+\.)*example\.(?:com|org|net|invalid)$''',
+]
+
+# Narrow on purpose: versions, shas, timestamps and ids must not match.
+[[rules]]
+id = "pii-phone-e164"
+description = "Phone number, E.164 (+ then 7-15 digits)"
+regex = '''(?:^|[^\w+])\+[1-9]\d{6,14}\b'''
+keywords = ["+"]
+
+[[rules]]
+id = "pii-phone-formatted"
+description = "Phone number, (ddd) ddd-dddd or ddd-ddd-dddd"
+regex = '''(?:\(\d{3}\) ?|\b\d{3}-)\d{3}-\d{4}\b'''
