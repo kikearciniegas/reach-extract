@@ -15,7 +15,13 @@ concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  GITLEAKS_VERSION: 8.30.1
+  GITLEAKS_SHA256: 551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb
+
 jobs:
+  # `Test` is a required check (.github/required-checks.json, scripts/protect-main.sh):
+  # no if:, so it reports on every event (test/ci-workflow.test.mjs).
   test:
     name: Test
     runs-on: ubuntu-latest
@@ -24,11 +30,56 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          fetch-depth: 0
           persist-credentials: false
+      # Secret and personal-data scan (.gitleaks.toml) of the commits in this run only
+      # (old fixtures would red every run).
+      - name: Gitleaks (commits in this run)
+        env:
+          BEFORE: ${{ github.event.before }}
+          BASE: ${{ github.event.pull_request.base.sha }}
+        run: |
+          base=${BASE:-$BEFORE}
+          # first push of a branch or a force push: fall back to the parent commit;
+          # a root commit (a new repository's first push) has none: scan it whole
+          git cat-file -e "$base^{commit}" 2>/dev/null || base=$(git rev-parse -q --verify 'HEAD^' || true)
+          range=${base:+$base..}HEAD
+          curl -sfL "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" -o "$RUNNER_TEMP/gl.tgz"
+          echo "${GITLEAKS_SHA256}  $RUNNER_TEMP/gl.tgz" | sha256sum -c -
+          tar xzf "$RUNNER_TEMP/gl.tgz" -C "$RUNNER_TEMP" gitleaks
+          "$RUNNER_TEMP/gitleaks" git --redact --no-banner --log-opts="$range" .
+      # Commit identities in the same range: GitHub noreply only. Prints sha and role, never the address.
+      - name: Commit identities (commits in this run)
+        env:
+          BEFORE: ${{ github.event.before }}
+          BASE: ${{ github.event.pull_request.base.sha }}
+        run: |
+          base=${BASE:-$BEFORE}
+          git cat-file -e "$base^{commit}" 2>/dev/null || base=$(git rev-parse -q --verify 'HEAD^' || true)
+          range=${base:+$base..}HEAD
+          n=$(git rev-list --count "$range")
+          [ "$n" -gt 0 ] || { echo "::error::empty commit range $range"; exit 1; }
+          bad=$(git log --format='%h%x09%ae%x09%ce' "$range" | awk -F'\t' '{
+            for (i = 2; i <= 3; i++) { e = tolower($i)
+              if (e !~ /@users\.noreply\.github\.com$/ && e != "noreply@github.com") print $1 " " (i == 2 ? "author" : "committer") } }')
+          if [ -n "$bad" ]; then
+            while read -r sha role; do echo "::error::commit $sha: $role email is not a GitHub noreply address"; done <<< "$bad"
+            exit 1
+          fi
+          echo "$n commit(s): every author and committer email is a GitHub noreply address"
       - name: Set up Node.js
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          node-version: "20"
+          node-version: "20.20.2"
+      # No lockfile is tracked (package.json declares no dependencies) and npm audit needs
+      # one: resolve it from package.json in a scratch dir, so the tree stays untouched.
+      - name: Dependency audit (production)
+        run: |
+          d=$(mktemp -d)
+          cp package.json "$d/"
+          cd "$d"
+          npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+          npm audit --omit=dev
       - name: Install Claude Code validator
         run: npm install --global @anthropic-ai/claude-code@2.1.281
       - name: Run tests
