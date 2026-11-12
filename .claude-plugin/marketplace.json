@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "reach-extract",
+  "owner": {
+    "name": "Rafael Arciniegas",
+    "url": "https://github.com/kikearciniegas"
+  },
+  "description": "Read-only social evidence extraction tools for Claude Code and Cowork.",
+  "version": "0.4.0",
+  "plugins": [
+    {
+      "name": "reach-extract",
+      "source": "./",
+      "displayName": "Reach Extract",
+      "description": "Read-only social-media extraction with normalized evidence, provenance, optional transcription, and instruction recovery.",
+      "version": "0.4.0",
+      "author": {
+        "name": "Rafael Arciniegas",
+        "url": "https://github.com/kikearciniegas"
+      },
+      "homepage": "https://github.com/kikearciniegas/reach-extract",
+      "repository": "https://github.com/kikearciniegas/reach-extract",
+      "license": "MIT",
+      "keywords": ["social-media", "research", "evidence", "transcription"],
+      "category": "productivity",
+      "tags": ["social-media", "research", "evidence"],
+      "strict": true
+    }
+  ]
+}
