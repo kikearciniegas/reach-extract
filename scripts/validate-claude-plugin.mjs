@@ -17,7 +17,7 @@ assert.equal(manifest.displayName, "Reach Extract");
 assert.equal(manifest.version, packageData.version);
 assert.match(manifest.version, /^\d+\.\d+\.\d+$/);
 assert.ok(manifest.description?.trim());
-assert.equal(manifest.author?.name, "Rafael Arciniegas");
+assert.equal(manifest.author?.name, packageData.author, "Claude manifest author must equal package.json author");
 assert.equal(manifest.license, "MIT");
 assert.equal(manifest.skills, "./skills/");
 for (const field of ["homepage", "repository"]) {
@@ -28,7 +28,7 @@ assert.ok(existsSync(path.join(root, "skills", "social-media-extract", "SKILL.md
 
 assert.equal(marketplace.name, "reach-extract");
 assert.equal(marketplace.version, packageData.version);
-assert.equal(marketplace.owner?.name, manifest.author.name);
+assert.equal(marketplace.owner?.url, `https://github.com/${marketplace.owner?.name}`, "marketplace owner must be the GitHub account its url names");
 assert.equal(marketplace.plugins?.length, 1);
 const [entry] = marketplace.plugins;
 assert.equal(entry.name, manifest.name);
