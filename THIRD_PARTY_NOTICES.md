@@ -2,10 +2,10 @@
 
 Last reviewed: 2026-09-22.
 
-WORX Reach Extract is an independent project authored by Rafael Arciniegas. It
+WORX Reach Extract is an independent project. It
 uses or interoperates with third-party software, services, websites, APIs,
-platforms, trademarks, and content. Those materials are not owned by Rafael
-Arciniegas merely because they are named, invoked, indexed, or linked here.
+platforms, trademarks, and content. Those materials are not owned by its
+author merely because they are named, invoked, indexed, or linked here.
 
 The project [MIT License](LICENSE) applies only to original WORX Reach Extract
 materials. It does not replace, extend, restrict, sublicense, or otherwise alter
@@ -141,7 +141,7 @@ rights.
 ## Warranty and responsibility disclaimer
 
 Third-party tools and services are provided under their own warranties and
-disclaimers. Rafael Arciniegas and WORX Reach Extract do not control and make no
+disclaimers. The author and WORX Reach Extract do not control and make no
 representation or warranty regarding their availability, security, accuracy,
 legality, continued compatibility, output, licensing status, or fitness for a
 particular purpose.

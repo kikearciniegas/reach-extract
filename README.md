@@ -186,9 +186,7 @@ and user authorization.
   CodeQL analysis, dependency review, Dependabot, secret scanning, and protected
   updates to `main`.
 
-## Authorship and license
-
-Authored by **Rafael Arciniegas**.
+## License
 
 Copyright (c) 2026 Rafael Arciniegas.
 

@@ -115,8 +115,6 @@ test("authorship and copyright notices remain attached to distributable files", 
   assert.equal(packageMetadata.license, "MIT");
 
   const skill = readFileSync(path.join(root, "skills", "social-media-extract", "SKILL.md"), "utf8");
-  assert.ok(skill.includes(`Authored by ${packageMetadata.author}`), "SKILL.md Authored by line must name package.json author");
-  assert.ok(readFileSync(path.join(root, "README.md"), "utf8").includes(`Authored by **${packageMetadata.author}**`), "README Authored by line must name package.json author");
   const frontmatter = skill.slice(4, skill.indexOf("\n---\n", 4));
   assert.doesNotMatch(frontmatter, /^metadata:/m);
   assert.ok(skill.includes(notice));

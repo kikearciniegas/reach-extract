@@ -1,7 +1,6 @@
 # Authorship and copyright notice
 
 **Project:** WORX Reach Extract
-**Author and copyright holder:** Rafael Arciniegas
 
 Copyright (c) 2026 Rafael Arciniegas.
 
