@@ -6,7 +6,7 @@ license: MIT. See LICENSE for the full license text.
 
 # Social Media Extract
 
-Authored by Rafael Arciniegas. Copyright (c) 2026 Rafael Arciniegas.
+Copyright (c) 2026 Rafael Arciniegas.
 Licensed under the [MIT License](LICENSE); see [NOTICE.md](NOTICE.md).
 Third-party components and content remain subject to their owners' rights; see
 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

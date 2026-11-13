@@ -1,7 +1,6 @@
 # Authorship and copyright notice
 
 **Skill:** Social Media Extract
-**Author and copyright holder:** Rafael Arciniegas
 
 Copyright (c) 2026 Rafael Arciniegas.
 

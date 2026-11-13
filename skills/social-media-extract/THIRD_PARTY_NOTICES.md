@@ -2,8 +2,7 @@
 
 Last reviewed: 2026-09-22.
 
-Social Media Extract is an independent Agent Skill authored by Rafael
-Arciniegas. It invokes or interoperates with separately installed third-party
+Social Media Extract is an independent Agent Skill. It invokes or interoperates with separately installed third-party
 tools and online services. Those components, services, trademarks, and content
 remain owned by their respective authors, contributors, licensors, and other
 rightsholders.
@@ -58,6 +57,6 @@ permissions, and respecting privacy, confidentiality, publicity, copyright,
 database, contractual, and related rights.
 
 Third-party tools and services are provided under their own warranties and
-disclaimers. Rafael Arciniegas and this skill do not control or warrant their
+disclaimers. The author and this skill do not control or warrant their
 availability, security, accuracy, legality, licensing status, output, or fitness
 for a particular purpose. This notice is informational and not legal advice.
